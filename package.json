@@ -19,15 +19,16 @@
     "stop:windows": "start.bat stop"
   },
   "dependencies": {
+    "antd": "^5.12.0",
+    "axios": "^1.6.0",
+    "date-fns": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.0",
-    "antd": "^5.12.0",
-    "zustand": "^4.4.7",
-    "date-fns": "^3.0.0",
-    "axios": "^1.6.0"
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",

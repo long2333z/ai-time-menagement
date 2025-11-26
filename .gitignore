@@ -71,3 +71,21 @@ htmlcov/
 
 # Local development
 fix_bat_encoding.py
+.ftp
+
+# BMad Framework (local configuration)
+.bmad-core/
+.claude/settings.local.json
+.claude/commands/
+.cursor/
+
+# Sensitive data
+*.tar.gz
+*.zip
+ai-time-management-full.tar.gz
+
+# SSH keys and deployment configs
+*.pem
+*.key
+deploy-with-key.sh
+setup-ssh.sh

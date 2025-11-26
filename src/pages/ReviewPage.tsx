@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Card, Button, Empty, message, Row, Col, Statistic, Tag } from 'antd'
-import { AudioOutlined, CheckCircleOutlined, ClockCircleOutlined, TrophyOutlined } from '@ant-design/icons'
+import { AudioOutlined, CheckCircleOutlined, ClockCircleOutlined, TrophyOutlined, ArrowLeftOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 import VoiceInput from '../components/VoiceInput'
 import { useAppStore } from '../store/useAppStore'
 import { DailyReview } from '../types'
@@ -9,6 +10,7 @@ import { format } from 'date-fns'
 const ReviewPage = () => {
   const [showVoiceInput, setShowVoiceInput] = useState(false)
   const { tasks, dailyReviews, addDailyReview } = useAppStore()
+  const navigate = useNavigate()
 
   const handleVoiceComplete = (transcript: string) => {
     if (!transcript.trim()) {
@@ -16,46 +18,29 @@ const ReviewPage = () => {
       return
     }
 
-    try {
-      // 计算今日任务统计
-      const today = new Date()
-      const todayTasks = tasks.filter((task) => {
-        if (!task.startTime) return false
-        const taskDate = new Date(task.startTime)
-        return (
-          taskDate.getDate() === today.getDate() &&
-          taskDate.getMonth() === today.getMonth() &&
-          taskDate.getFullYear() === today.getFullYear()
-        )
-      })
+    // 计算今日任务统计
+    const today = new Date()
+    const todayTasks = tasks.filter((task) => {
+      if (!task.startTime) return false
+      const taskDate = new Date(task.startTime)
+      return (
+        taskDate.getDate() === today.getDate() &&
+        taskDate.getMonth() === today.getMonth() &&
+        taskDate.getFullYear() === today.getFullYear()
+      )
+    })
 
-      const completedTasks = todayTasks.filter((t) => t.status === 'completed')
-      const totalTasks = todayTasks.length
-      const completedCount = completedTasks.length
-      const completionRate = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0
-      const totalTimeSpent = completedTasks.reduce((sum, task) => sum + (task.duration || 0), 0)
+    const completedTasks = todayTasks.filter((t) => t.status === 'completed')
+    const totalTasks = todayTasks.length
+    const completedCount = completedTasks.length
+    const completionRate = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0
 
-      // 创建复盘记录
-      const review: DailyReview = {
-        id: `review-${Date.now()}`,
-        date: today,
-        planId: `plan-${format(today, 'yyyy-MM-dd')}`, // 简单的计划ID关联
-        voiceTranscript: transcript,
-        completionRate,
-        totalTasks,
-        completedTasks: completedCount,
-        totalTimeSpent,
-        notes: transcript,
-        createdAt: new Date(),
+    // 跳转到AI聊天页面并传递复盘内容
+    navigate('/ai-chat', {
+      state: {
+        initialMessage: `这是我今天的复盘：\n\n${transcript}\n\n今日完成 ${completedCount}/${totalTasks} 个任务，完成率 ${completionRate}%。\n\n请帮我分析今天的表现，给出改进建议。`
       }
-
-      addDailyReview(review)
-      message.success('复盘记录已保存！')
-      setShowVoiceInput(false)
-    } catch (error) {
-      console.error('Error saving review:', error)
-      message.error('保存复盘失败，请重试')
-    }
+    })
   }
 
   // 获取今日复盘记录
@@ -75,9 +60,17 @@ const ReviewPage = () => {
     <div className="space-y-4 md:space-y-6 pb-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">🌙 晚间复盘</h1>
-          <p className="text-sm md:text-base text-gray-600 mt-1">用2分钟回顾你的一天</p>
+        <div className="flex items-center gap-3">
+          <Button
+            type="text"
+            icon={<ArrowLeftOutlined />}
+            onClick={() => navigate('/')}
+            className="text-lg"
+          />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">🌙 晚间复盘</h1>
+            <p className="text-sm md:text-base text-gray-600 mt-1">用2分钟回顾你的一天</p>
+          </div>
         </div>
         <Button
           type="primary"

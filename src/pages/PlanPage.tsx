@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Card, Button, Empty, message } from 'antd'
-import { AudioOutlined, PlusOutlined } from '@ant-design/icons'
+import { AudioOutlined, PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 import VoiceInput from '../components/VoiceInput'
 import TaskTimeline from '../components/TaskTimeline'
 import { useAppStore } from '../store/useAppStore'
@@ -10,6 +11,7 @@ import { Task } from '../types'
 const PlanPage = () => {
   const [showVoiceInput, setShowVoiceInput] = useState(false)
   const { tasks, addTask, updateTask, deleteTask } = useAppStore()
+  const navigate = useNavigate()
 
   const handleVoiceComplete = (transcript: string) => {
     if (!transcript.trim()) {
@@ -17,26 +19,12 @@ const PlanPage = () => {
       return
     }
 
-    try {
-      // Parse voice input to tasks
-      const parsedTasks = parseChineseTranscript(transcript)
-      
-      if (parsedTasks.length === 0) {
-        message.warning('未能识别到有效的任务，请重新尝试')
-        return
+    // 跳转到AI聊天页面并传递语音内容
+    navigate('/ai-chat', {
+      state: {
+        initialMessage: `这是我今天的计划：\n\n${transcript}\n\n请帮我分析并优化这个计划，给出具体的建议。`
       }
-
-      // Add tasks to store
-      parsedTasks.forEach((task) => {
-        addTask(task)
-      })
-
-      message.success(`成功添加 ${parsedTasks.length} 个任务！`)
-      setShowVoiceInput(false)
-    } catch (error) {
-      console.error('Error parsing voice input:', error)
-      message.error('解析任务失败，请重试')
-    }
+    })
   }
 
   const handleToggleStatus = (taskId: string) => {
@@ -71,9 +59,17 @@ const PlanPage = () => {
     <div className="space-y-4 md:space-y-6 pb-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">🌅 早晨计划</h1>
-          <p className="text-sm md:text-base text-gray-600 mt-1">用2分钟规划你的一天</p>
+        <div className="flex items-center gap-3">
+          <Button
+            type="text"
+            icon={<ArrowLeftOutlined />}
+            onClick={() => navigate('/')}
+            className="text-lg"
+          />
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">🌅 早晨计划</h1>
+            <p className="text-sm md:text-base text-gray-600 mt-1">用2分钟规划你的一天</p>
+          </div>
         </div>
         <Button
           type="primary"

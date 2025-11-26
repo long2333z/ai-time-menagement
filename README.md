@@ -126,7 +126,8 @@ This is an MVP (Minimum Viable Product) implementation focusing on:
 ## 📖 更多文档
 
 ### 快速链接
-- [快速启动指南](./docs/guides/快速启动指南.md) - 5 分钟本地运行
+- [快速启动指南](./docs/guides/快速启动指南.md) - 5 分钟本地运行（中文）
+- [Quick Start Guide](./docs/guides/QUICK_START.md) - Quick start (English)
 - [AI 功能指南](./docs/guides/AI_CHAT_GUIDE.md) - 了解 AI 聊天功能
 - [部署快速开始](./docs/deployment/DEPLOY_QUICK_START.md) - 生产环境部署
 - [前后端集成](./docs/development/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) - 开发者指南

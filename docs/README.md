@@ -44,7 +44,7 @@
 
 ### 新用户
 1. [START_HERE.md](./guides/START_HERE.md) - 了解项目
-2. [快速启动指南.md](./guides/快速启动指南.md) - 本地运行
+2. [快速启动指南.md](./guides/快速启动指南.md) - 本地运行（推荐中文用户）
 3. [AI_CHAT_GUIDE.md](./guides/AI_CHAT_GUIDE.md) - 使用 AI 功能
 
 ### 开发者

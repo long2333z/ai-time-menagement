@@ -105,21 +105,6 @@ const PlanPage = () => {
         </Card>
       )}
 
-      {/* AI Suggestions */}
-      <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
-        <div className="flex items-start gap-3">
-          <div className="text-2xl">💡</div>
-          <div className="flex-1">
-            <h4 className="font-semibold text-sm md:text-base text-gray-900 mb-1">
-              AI建议
-            </h4>
-            <p className="text-xs md:text-sm text-gray-600">
-              根据您的历史数据，建议在上午安排重要任务，下午处理沟通类工作。
-              记得在任务间留出休息时间哦！
-            </p>
-          </div>
-        </div>
-      </Card>
 
       {/* Tasks Timeline */}
       <Card 

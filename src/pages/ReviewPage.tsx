@@ -158,7 +158,7 @@ const ReviewPage = () => {
                 <div className="py-2">
                   <div className="text-xs md:text-sm text-gray-500 mb-1">复盘时间</div>
                   <div className="text-sm font-medium text-gray-900">
-                    {format(latestReview.createdAt, 'HH:mm')}
+                    {format(new Date(latestReview.createdAt), 'HH:mm')}
                   </div>
                 </div>
               </Card>

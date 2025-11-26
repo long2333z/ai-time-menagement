@@ -56,7 +56,7 @@ const HomePage = () => {
             欢迎回来！
           </h1>
           <p className="text-base md:text-xl text-gray-600 mb-6 md:mb-8 px-2">
-            2分钟语音规划，AI深度洞察
+            用2分钟规划你的一天
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
             <Button
@@ -185,7 +185,7 @@ const HomePage = () => {
                   <div className="flex flex-wrap gap-2 mt-1">
                     {task.startTime && (
                       <Tag color="blue" className="text-xs">
-                        {format(task.startTime, 'HH:mm')}
+                        {format(new Date(task.startTime), 'HH:mm')}
                       </Tag>
                     )}
                     {task.priority && (

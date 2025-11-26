@@ -65,12 +65,14 @@ const TaskTimeline: React.FC<TaskTimelineProps> = ({
   const sortedTasks = [...tasks].sort((a, b) => {
     if (!a.startTime) return 1
     if (!b.startTime) return -1
-    return a.startTime.getTime() - b.startTime.getTime()
+    const aTime = new Date(a.startTime).getTime()
+    const bTime = new Date(b.startTime).getTime()
+    return aTime - bTime
   })
 
   // Group tasks by time slot
   const groupedTasks = sortedTasks.reduce((acc, task) => {
-    const key = task.startTime ? format(task.startTime, 'HH:00') : 'Unscheduled'
+    const key = task.startTime ? format(new Date(task.startTime), 'HH:00') : 'Unscheduled'
     if (!acc[key]) {
       acc[key] = []
     }
@@ -137,7 +139,7 @@ const TaskTimeline: React.FC<TaskTimelineProps> = ({
                     <div className="flex flex-wrap items-center gap-2">
                       {task.startTime && task.endTime && (
                         <Tag icon={<ClockCircleOutlined />} color="blue">
-                          {format(task.startTime, 'HH:mm')} - {format(task.endTime, 'HH:mm')}
+                          {format(new Date(task.startTime), 'HH:mm')} - {format(new Date(task.endTime), 'HH:mm')}
                         </Tag>
                       )}
 

@@ -176,16 +176,13 @@ const VoiceInput: React.FC<VoiceInputProps> = ({
       recognitionRef.current.stop()
     }
     stopTimer()
-    setStatus('processing')
-    
-    // Simulate processing delay
-    setTimeout(() => {
-      setStatus('completed')
-      if (transcript.trim()) {
-        onComplete?.(transcript.trim())
-        message.success('语音输入完成！')
-      }
-    }, 500)
+    setStatus('completed')
+
+    if (transcript.trim()) {
+      message.success('语音输入完成！')
+    } else {
+      message.warning('未检测到语音内容')
+    }
   }
 
   const handleEdit = () => {
@@ -194,10 +191,7 @@ const VoiceInput: React.FC<VoiceInputProps> = ({
 
   const handleSaveEdit = () => {
     setIsEditing(false)
-    if (transcript.trim()) {
-      onComplete?.(transcript.trim())
-      message.success('修改已保存！')
-    }
+    message.success('修改已保存！')
   }
 
   const handleReset = () => {
@@ -415,19 +409,33 @@ const VoiceInput: React.FC<VoiceInputProps> = ({
           {(status === 'completed' || status === 'processing') && transcript && (
             <>
               {!isEditing && (
-                <Button
-                  size="large"
-                  icon={<EditOutlined />}
-                  onClick={handleEdit}
-                >
-                  编辑
-                </Button>
+                <>
+                  <Button
+                    type="primary"
+                    size="large"
+                    icon={<CheckOutlined />}
+                    onClick={() => {
+                      if (transcript.trim()) {
+                        onComplete?.(transcript.trim())
+                      }
+                    }}
+                  >
+                    确认提交
+                  </Button>
+                  <Button
+                    size="large"
+                    icon={<EditOutlined />}
+                    onClick={handleEdit}
+                  >
+                    编辑
+                  </Button>
+                </>
               )}
               <Button
                 size="large"
                 onClick={handleReset}
               >
-                新录音
+                重新录音
               </Button>
             </>
           )}

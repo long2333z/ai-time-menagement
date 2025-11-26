@@ -2,6 +2,17 @@
 
 An AI-powered time management application that helps you plan your day and review your progress in just 2 minutes using voice input.
 
+## 📚 文档
+
+完整文档请查看 **[docs 文件夹](./docs/)**
+
+- 🚀 [用户指南](./docs/guides/) - 快速上手和使用说明
+- 🚢 [部署文档](./docs/deployment/) - 服务器部署和生产环境配置
+- 💻 [开发文档](./docs/development/) - 开发者参考和集成指南
+- 🔧 [修复日志](./docs/fix-logs/) - 问题修复和改进记录
+
+**推荐新用户从这里开始**: [START_HERE.md](./docs/guides/START_HERE.md)
+
 ## Features
 
 - 🎤 **Voice Planning**: Plan your day in 2 minutes with natural voice input
@@ -111,6 +122,17 @@ This is an MVP (Minimum Viable Product) implementation focusing on:
 - Real payment integration
 - Native mobile apps
 - Real calendar API integration
+
+## 📖 更多文档
+
+### 快速链接
+- [快速启动指南](./docs/guides/快速启动指南.md) - 5 分钟本地运行
+- [AI 功能指南](./docs/guides/AI_CHAT_GUIDE.md) - 了解 AI 聊天功能
+- [部署快速开始](./docs/deployment/DEPLOY_QUICK_START.md) - 生产环境部署
+- [前后端集成](./docs/development/FRONTEND_BACKEND_INTEGRATION_GUIDE.md) - 开发者指南
+
+### 完整文档索引
+查看 [docs/README.md](./docs/README.md) 获取完整的文档列表和推荐阅读路径。
 
 ## License
 

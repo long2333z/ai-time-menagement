@@ -44,13 +44,13 @@ echo -e "${GREEN}✓${NC} 文件检查完成"
 # 2. 打包项目文件
 echo -e "\n${GREEN}[2/7]${NC} 打包项目文件..."
 tar -czf ai-time-management-full.tar.gz \
-    backend/ \
-    docker-compose.yml \
-    nginx.conf \
     --exclude="backend/__pycache__" \
     --exclude="backend/venv" \
     --exclude="backend/*.db" \
-    --exclude="backend/.env"
+    --exclude="backend/.env" \
+    backend/ \
+    docker-compose.yml \
+    nginx.conf
 
 echo -e "${GREEN}✓${NC} 打包完成: ai-time-management-full.tar.gz"
 

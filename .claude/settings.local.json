@@ -20,7 +20,15 @@
       "Bash(git remote set-url:*)",
       "Bash(npm run build:*)",
       "Bash(npm install:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(cat:*)",
+      "Bash(./deploy-with-nginx.sh)",
+      "Bash(ssh:*)",
+      "Bash(./deploy-with-key.sh)",
+      "Bash(curl -s -o /dev/null -w \"HTTP Status: %{http_code}\\n\" http://43.134.233.165/)",
+      "Bash(curl:*)",
+      "Bash(./deploy-direct.sh:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []

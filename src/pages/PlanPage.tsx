@@ -183,22 +183,6 @@ const PlanPage = () => {
           </div>
         </div>
       </Card>
-
-      {/* Footer signature */}
-      <div className="text-center py-4 text-gray-500 text-xs md:text-sm">
-        <p>
-          由{' '}
-          <a
-            href="https://with.woa.com/"
-            style={{ color: '#8A2BE2' }}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            with
-          </a>{' '}
-          通过自然语言生成
-        </p>
-      </div>
     </div>
   )
 }

@@ -109,7 +109,10 @@ const Layout = () => {
               className="text-lg"
             />
           )}
-          <h1 className="text-lg md:text-xl font-bold text-primary-600 flex items-center gap-2">
+          <h1
+            className="text-lg md:text-xl font-bold text-primary-600 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={() => navigate('/')}
+          >
             <span className="text-2xl">⏰</span>
             <span className="hidden sm:inline">AI时间管理大师</span>
           </h1>
